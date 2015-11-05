@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:p="clr-namespace:FirstProject;assembly=FirstProject"
+			 prism:ViewModelLocator.AutowireViewModel="True"
+			 xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 x:Class="FirstProject.AuthorizationPage"> 
+	
+	<StackLayout  Style = "{StaticResource MainStackStyle}" >
+		<Grid Padding = "15, 120, 15, 40" ColumnSpacing = "0" RowSpacing ="0">
+			<Grid.RowDefinitions>
+			 	<RowDefinition Height="*"/>
+			 	<RowDefinition Height="1"/>
+			 	<RowDefinition Height="*"/>
+			 	<RowDefinition Height="1"/>
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+			 	<ColumnDefinition Width="4.5*" />
+			 	<ColumnDefinition Width="*" />			
+			</Grid.ColumnDefinitions>			 			
+			
+				<p:ExtendedEntry Grid.Row="0" Grid.Column="0"  Placeholder="имя" />
+				<BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan  = "2" Style = "{StaticResource BoxViewStyle}" />
+				<ContentView Padding = "0, 0, 0, 0" Grid.Row="0" Grid.Column="1" VerticalOptions = "Fill" BackgroundColor = "Black">
+					<Image Source="ico_user" WidthRequest = "20" HeightRequest = "30"/>
+				</ContentView>
+
+				<p:ExtendedEntry Grid.Row="2" Grid.Column="0"  Placeholder="пароль" IsPassword="true"/>
+				<BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan  = "2" Style = "{StaticResource BoxViewStyle}"/>
+				<ContentView Padding = "0, 0, 0, 0" Grid.Row="2" Grid.Column="1" VerticalOptions = "Fill" BackgroundColor = "Black">
+					<Image Source="email_icon" VerticalOptions = "End"/>
+				</ContentView>		
+		 </Grid>
+
+		 <StackLayout Spacing = "30" HorizontalOptions = "Center" Padding = "0,0,0,0">
+		 <RelativeLayout>	                
+			<p:ExtendedButtonWithPadding Text="Войти" x:Name = "enterButton"			 	
+				 	Style = "{StaticResource EnterButtonStyle}"
+	           		HeightRequest = "40"
+		           	BindingContext="{x:Reference registrationButton}"
+					WidthRequest="{Binding Path=Width}"	        	                                        	
+				 	/>
+
+				 	<Image Source="login_arrow" Scale = "0.7" 
+			 		RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, 
+	                                        		Property=Width,
+	                                        		ElementName=enterButton,
+	                                        		Factor=0.6}"
+	                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, 
+	                                        		Property=Height,
+	                                        		ElementName=enterButton,
+	                                        		Factor= 0.265}" 
+	                />	
+		</RelativeLayout>
+
+			<p:ExtendedButton Text="Регистрация" x:Name = "registrationButton"		 	
+			 	Style = "{StaticResource RegistrationButtonStyle}"
+           		HeightRequest = "40"
+           		Command="{Binding NavigateCommand}"				   
+			 	/>
+		
+		</StackLayout>
+	</StackLayout>  
+</ContentPage>
+
+
